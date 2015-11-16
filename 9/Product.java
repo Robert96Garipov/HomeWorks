@@ -1,21 +1,36 @@
+import java.util.GregorianCalendar;
+
 public class Product {
     
     
     private String name;
     private int price;
-    private final String bestUntil;
+    private final GregorianCalendar bestUntil;
     private final String manufacturer;             
     private final int weight;
     private boolean fresh;
     private boolean sanctions;
+    private final GregorianCalendar today = new GregorianCalendar(15, 11, 16);
     
     
-    Product (String name, int price, String bestUntil, String manufacturer, int weight) {
+    Product (String name, int price, GregorianCalendar bestUntil, String manufacturer, int weight) {
         this.name = name;
         this.price = price;
         this.bestUntil = bestUntil;
         this.manufacturer = manufacturer;
         this.weight = weight;
+    
+    
+    if (bestUntil.after(today)){
+        this.fresh = true;            
+        }
+        else this.fresh = false; 
+    
+    
+    if (this.manufacturer == "Ru" || this.manufacturer == "Kz" || this.manufacturer == "By" || this.manufacturer == "Am" || this.manufacturer == "Kg") {
+        this.sanctions = true;
+    }
+    else this.sanctions = false;
     }
     
     
@@ -61,7 +76,7 @@ public class Product {
     } 
     
     
-    public String getBestUntil() {
+    public GregorianCalendar getBestUntil() {
             return this.bestUntil; 
     } 
     
@@ -90,7 +105,7 @@ public class Product {
     } 
     
     
-    public void tostring() {
+    public void ToString() {
         System.out.println("Name:         " + name);
         System.out.println("Price:        " + price);
         System.out.println("Best until:   " + bestUntil);
@@ -98,6 +113,7 @@ public class Product {
         System.out.println("Weight:       " + price);
         System.out.println("Fresh:        " + fresh);
         System.out.println("Not sanctions:" + sanctions);
+        System.out.println();
     }
 }    
     
