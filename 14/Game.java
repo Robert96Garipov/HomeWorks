@@ -17,7 +17,9 @@ public class Game {
                 int bull = 0; int cow = 0;
                 for(int i = 0; i < word.length(); i++){
                     if(word.charAt(i) == input.charAt(i)) bull++;
-                    else cow++;
+                    else{ 
+                        if(checkIfCharExistsInString(input.charAt(i), word)) cow++;
+                    }
                 }
                     
                 if(bull == 4) {
@@ -32,6 +34,15 @@ public class Game {
                 System.out.println("Error: " + e.getMessage());
             }
         }
+    }
+    
+    public boolean checkIfCharExistsInString(char sym, String line){
+        for(int j = 0; j < line.length(); j++){
+            if(line.charAt(j) == sym){
+                return true;
+            }
+        }
+        return false;
     }
     
     public String getWord(){
